@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        .calculator {
+            background-color: black;
+            width: 233px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        *{
+            color: white;
+
+        }
+        input[type="button"] {
+            background-color: blueviolet;
+            width: 45px;
+            height: 45px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="calculator">
+        <div> <h2>Calculadora con Vue</h2></div>
+        <label for="Digitar">Digitar</label>
+        <input type="text" v-model="expression">
+        <br>
+        <input type="button" value="1" @click="appendToExpression(1)">
+        <input type="button" value="2" @click="appendToExpression(2)">
+        <input type="button" value="3" @click="appendToExpression(3)">
+        <input type="button" value="+" @click="appendToExpression('+')">
+        <br>
+        <input type="button" value="4" @click="appendToExpression(4)">
+        <input type="button" value="5" @click="appendToExpression(5)">
+        <input type="button" value="6" @click="appendToExpression(6)">
+        <input type="button" value="-" @click="appendToExpression('-')">
+        <br>
+        <input type="button" value="7" @click="appendToExpression(7)">
+        <input type="button" value="8" @click="appendToExpression(8)">
+        <input type="button" value="9" @click="appendToExpression(9)">
+        <input type="button" value="*" @click="appendToExpression('*')">
+        <br>
+        <input type="button" value="C" @click="clearExpression">
+        <input type="button" value="0" @click="appendToExpression(0)">
+        <input type="button" value="=" @click="evaluateExpression">
+        <input type="button" value="/" @click="appendToExpression('/')">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                expression: ''
+            },
+            methods: {
+                appendToExpression: function(value) {
+                    this.expression += value;
+                },
+                clearExpression: function() {
+                    this.expression = '';
+                },
+                evaluateExpression: function() {
+                    try {
+                        this.expression = eval(this.expression);
+                    } catch (error) {
+                        alert('Invalid expression!');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
